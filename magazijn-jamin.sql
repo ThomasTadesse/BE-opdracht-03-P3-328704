@@ -4,10 +4,9 @@
 -- 01             22-11-2024  Thomas Tadesse
 -- ********************************************************
 
-DROP DATABASE IF EXISTS magazijn-jamin;
-CREATE DATABASE IF NOT EXISTS magazijn-jamin DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE magazijn-jamin;
-
+DROP DATABASE IF EXISTS `magazijn-jamin`;
+CREATE DATABASE IF NOT EXISTS `magazijn-jamin` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `magazijn-jamin`;
 -- --------------------------------------------------------
 
 -- Step 01:
@@ -122,6 +121,57 @@ VALUES
     (13, 5, 20, 1, NULL, SYSDATE(6), SYSDATE(6));
 
 
+-- Step: 04
+-- Goal: Create a new table Contact
+-- ***********************************************************
+-- Version:       Date:       Author:           Description
+-- ********       ****        *******           ***********
+-- 01             13-12-2024  Thomas Tadesse    New table
+-- ***********************************************************
+
+CREATE TABLE IF NOT EXISTS Contact
+(
+     Id                             SMALLINT       UNSIGNED          NOT NULL      AUTO_INCREMENT
+    ,Straat                         VARCHAR(60)                       NOT NULL
+    ,Huisnummer                     VARCHAR(10)                       NOT NULL
+    ,Postcode                       VARCHAR(6)                        NOT NULL
+    ,Stad                           VARCHAR(60)                       NOT NULL
+    ,IsActief                       BIT                               NOT NULL      DEFAULT 1
+    ,Opmerkingen                    VARCHAR(255)                          NULL      DEFAULT NULL
+    ,DatumAangemaakt                Datetime(6)                       NOT NULL
+    ,DatumGewijzigd                 Datetime(6)                       NOT NULL
+    ,CONSTRAINT           PK_Contact_Id  PRIMARY KEY CLUSTERED (Id)
+) ENGINE=InnoDB   AUTO_INCREMENT=1;
+
+
+-- Step: 05
+-- Goal: Fill table Contact with data
+-- ***********************************************************
+-- Version:       Date:       Author:           Description
+-- ********       ****        *******           ***********
+-- 01             13-12-2024  Thomas Tadesse    Insert Records
+-- ***********************************************************
+
+INSERT INTO Contact
+(
+    Straat
+    ,Huisnummer
+    ,Postcode
+    ,Stad
+    ,IsActief
+    ,Opmerkingen
+    ,DatumAangemaakt
+    ,DatumGewijzigd
+)
+VALUES
+  ('Van Gilslaan', '34', '1045CB', 'Stad', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Den Dolderpad', '2', '1067RC', 'Hilvarenbeek', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Fredo Raalteweg', '257', '1236OP', 'Utrecht', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Bertrand Russellhof', '21', '2034AP', 'Nijmegen', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Leon van Bonstraat', '213', '145XC', 'Den Haag', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Bea van Lingenlaan', '234', '2197FG', 'Lunteren', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Sint Pancras', '1', 'NULL', 'NULL', 1, NULL, SYSDATE(6), SYSDATE(6));
+
 -- Step 05:
 -- Goal: Create a new table Leverancier
 -- ********************************************************
@@ -135,6 +185,7 @@ DROP TABLE IF EXISTS Leverancier;
 CREATE TABLE IF NOT EXISTS Leverancier
 (
      Id                 SMALLINT             UNSIGNED        NOT NULL      AUTO_INCREMENT
+    ,ContactId          SMALLINT             UNSIGNED        NOT NULL
     ,Naam               VARCHAR(60)                          NOT NULL
     ,Contactpersoon     VARCHAR(60)                          NOT NULL
     ,Leveranciernummer  VARCHAR(11)                          NOT NULL
@@ -143,7 +194,8 @@ CREATE TABLE IF NOT EXISTS Leverancier
     ,Opmerkingen        VARCHAR(255)                             NULL      DEFAULT NULL
     ,DatumAangemaakt Datetime(6)                             NOT NULL
     ,DatumGewijzigd  Datetime(6)                             NOT NULL
-    ,CONSTRAINT      PK_Levrancier_Id        PRIMARY KEY CLUSTERED (Id)
+    ,CONSTRAINT      PK_Leverancier_Id        PRIMARY KEY CLUSTERED (Id)
+    ,CONSTRAINT      FK_Leverancier_ContactId_Contact_Id  FOREIGN KEY (ContactId) REFERENCES Contact (Id)
 ) ENGINE=InnoDB   AUTO_INCREMENT=1;
 
 
@@ -157,7 +209,8 @@ CREATE TABLE IF NOT EXISTS Leverancier
 
 INSERT INTO Leverancier
 (
-     Naam
+    ContactId
+    ,Naam
     ,Contactpersoon
     ,Leveranciernummer
     ,Mobiel
@@ -167,11 +220,13 @@ INSERT INTO Leverancier
     ,DatumGewijzigd
 )
 VALUES
-    ('Venco', 'Bert van Linge', 'L1029384719', '06-28493827', 1, NULL, SYSDATE(6), SYSDATE(6)),
-    ('Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734', 1, NULL, SYSDATE(6), SYSDATE(6)),
-    ('Haribo', 'Sven Stalman', 'L1029324748', '06-24383291', 1, NULL, SYSDATE(6), SYSDATE(6)),
-    ('Basset', 'Joyce Stelterberg', 'L1023845773', '06-48293823', 1, NULL, SYSDATE(6), SYSDATE(6)),
-    ('De Bron', 'Remco Veenstra', 'L1023857736', '06-34291234', 1, NULL, SYSDATE(6), SYSDATE(6));
+    (1,'Venco', 'Bert van Linge', 'L1029384719', '06-28493827', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    (2,'Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    (3,'Haribo', 'Sven Stalman', 'L1029324748', '06-24383291', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    (4,'Basset', 'Joyce Stelterberg', 'L1023845773', '06-48293823', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    (5,'De Bron', 'Remco Veenstra', 'L1023857736', '06-34291234', 1, NULL, SYSDATE(6), SYSDATE(6)),
+    (6,'Quality Street', 'Johan Nooij', 'L1029234586', '06-23458456', 1, NULL, SYSDATE(6), SYSDATE(6));
+'
 
 
 

@@ -1,8 +1,7 @@
 <x-layout>
-<!-- <form method="POST" action="/leverancier/{{ $leverancier->id }}">
+<form method="POST" action="/leverancier/{{ $leverancier->id }}">
     @csrf
     @method('PATCH')
-     -->
 
 <div class="container mx-auto px-6 py-8">
 <h1 class="text-3xl font-semibold mb-6 underline">Overzicht Leveranciers</h1>
@@ -44,17 +43,17 @@
     </div>
 </div>
 
-<!-- </form> -->
+</form>
 
-<!-- <div class="mt-6 flex items-center justify-between gap-x-6">
+<div class="mt-6 flex items-center justify-between gap-x-6">
     <div class="flex items-center">
         <button form="delete-form" class="text-red-500 text-sm font-bold">Delete</button>
     </div>
-</div> -->
+</div>
 
-<!-- <form method="POST" action="/leverancier/{{ $leverancier->id }}" id="delete-form" class="hidden">
+<form method="POST" action="/leverancier/{{ $leverancier->id }}" id="delete-form" class="hidden">
     @csrf
     @method('DELETE')
-</form> -->
+</form>
 
 </x-layout>

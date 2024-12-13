@@ -31,8 +31,8 @@ Route::delete('/magazijn/{id}', [MagazijnController::class, 'destroy'])->name('m
 
 Route::resource('leverancier', LeverancierController::class);
 
-Route::get('/leverancier', [LeverancierController::class, 'index'])->name('leverancier.index'); // view leverancier.blade.php
-Route::get('/leverancier/{id}', [LeverancierController::class, 'show'])->name('leverancier.show'); // view leverancier.blade.php
+Route::get('/leverancier', [LeverancierController::class, 'index'])->name('leverancier.index'); // view index.blade.php
+Route::get('/leverancier/{id}', [LeverancierController::class, 'show'])->name('leverancier.show'); // view show.blade.php
 
 Route::get('/leverancier/create', [LeverancierController::class, 'create'])
     ->name('leverancier.create'); // view create.blade.php
