@@ -11,17 +11,13 @@ class Leverancier extends Model
     /** @use HasFactory<\Database\Factories\LeverancierFactory> */
     use HasFactory;
 
-    protected $table = 'leveranciers'; // Ensure the table name is correct
+    protected $table = 'leverancier'; // Ensure the table name is correct
 
     protected $fillable = [
         'Naam',
         'Contactpersoon',
         'Leveranciernummer',
-        'Mobiel',
-        'IsActief',
-        'Opmerkingen',
-        'DatumAangemaakt',
-        'DatumGewijzigd'
+        'Mobiel'
     ];
 
     public function tasks()

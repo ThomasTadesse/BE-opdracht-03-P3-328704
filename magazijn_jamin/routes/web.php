@@ -19,6 +19,7 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+// resoure magazijn
 Route::resource('magazijn', MagazijnController::class);
 
 Route::get('/magazijn', [MagazijnController::class, 'index'])->name('magazijn.index'); // view magazijn.blade.php
@@ -29,6 +30,7 @@ Route::post('/magazijn', [MagazijnController::class, 'store'])->name('magazijn.s
 Route::put('/magazijn/{id}', [MagazijnController::class, 'update'])->name('magazijn.update'); // update data
 Route::delete('/magazijn/{id}', [MagazijnController::class, 'destroy'])->name('magazijn.destroy'); // delete data
 
+//resoure leverancier
 Route::resource('leverancier', LeverancierController::class);
 
 Route::get('/leverancier', [LeverancierController::class, 'index'])->name('leverancier.index'); // view index.blade.php
@@ -49,6 +51,8 @@ Route::put('/leverancier/{id}', [LeverancierController::class, 'update'])
 Route::delete('/leverancier/{id}', [LeverancierController::class, 'destroy'])
     ->name('leverancier.destroy'); // delete data
 
+
+// resoure product
 Route::resource('product', ProductController::class);
 
 Route::get('/product', [ProductController::class, 'index'])->name('product.index'); // view product.blade.php

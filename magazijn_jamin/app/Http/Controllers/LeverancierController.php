@@ -11,13 +11,13 @@ class LeverancierController extends Controller
 {
     public function index()
     {
-        $leveranciers = Leverancier::select('leveranciers.*')
-            ->leftJoin('product_per_leveranciers', 'leveranciers.Id', '=', 'product_per_leveranciers.LeverancierId')
-            ->groupBy('leveranciers.Id')
-            ->addSelect(DB::raw('COUNT(DISTINCT product_per_leveranciers.ProductId) as unieke_producten_count'))
+        $leverancier = Leverancier::select('leverancier.*')
+            ->leftJoin('productperleverancier', 'leverancier.Id', '=', 'productperleverancier.LeverancierId')
+            ->groupBy('leverancier.Id')
+            ->addSelect(DB::raw('COUNT(DISTINCT productperleverancier.ProductId) as unieke_producten_count'))
             ->get();
 
-        return view('leverancier.index', compact('leveranciers'));
+        return view('leverancier.index', compact('leverancier'));
     }
 
 
@@ -36,10 +36,6 @@ class LeverancierController extends Controller
             'Leveranciernummer' => 'required|string|max:11',
             'Mobiel' => 'required|string|max:11',
             'Aantal_producten' => 'required|integer',
-            'IsActief' => 'required|boolean',
-            'Opmerkingen' => 'nullable|string|max:255',
-            'DatumAangemaakt' => 'required|date',
-            'DatumGewijzigd' => 'required|date',
         ]);
         
 
@@ -63,7 +59,7 @@ class LeverancierController extends Controller
 
     public function edit($id)
     {
-        $leverancier = Leverancier::find($id);
+        $leverancier = Leverancier::findOrFail($id);
         return view('leverancier.edit', compact('leverancier'));
     }
 
@@ -75,10 +71,6 @@ class LeverancierController extends Controller
             'Leveranciernummer' => 'required|string|max:11',
             'Mobiel' => 'required|string|max:11',
             'Aantal_producten' => 'required|integer',
-            'IsActief' => 'required|boolean',
-            'Opmerkingen' => 'nullable|string|max:255',
-            'DatumAangemaakt' => 'required|date',
-            'DatumGewijzigd' => 'required|date',
         ]);
 
         $leverancier = Leverancier::find($id);
