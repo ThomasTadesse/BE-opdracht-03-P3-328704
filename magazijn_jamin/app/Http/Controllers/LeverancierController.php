@@ -43,9 +43,12 @@ class LeverancierController extends Controller
             ->with('success', 'Leverancier created successfully.');
     }
 
+// add contact table with straat huisnummer postcode & stad
+
     public function show($id)
     {
         $leverancier = Leverancier::find($id);
+        // $contact = Contact::
        
         return view('leverancier.show', compact('leverancier'));
     }
