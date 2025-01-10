@@ -11,11 +11,8 @@ class LeverancierController extends Controller
 {
     public function index()
     {
-        $leverancier = Leverancier::select('leverancier.*')
-            ->leftJoin('productperleverancier', 'leverancier.Id', '=', 'productperleverancier.LeverancierId')
-            ->groupBy('leverancier.Id')
-            ->addSelect(DB::raw('COUNT(DISTINCT productperleverancier.ProductId) as unieke_producten_count'))
-            ->get();
+        $leverancier = Leverancier::all(); // or your specific query like joins etc
+        // dd($leverancier);
 
         return view('leverancier.index', compact('leverancier'));
     }
