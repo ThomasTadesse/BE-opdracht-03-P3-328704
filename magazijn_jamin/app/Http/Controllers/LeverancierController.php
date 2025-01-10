@@ -11,8 +11,9 @@ class LeverancierController extends Controller
 {
     public function index()
     {
-        $leverancier = Leverancier::all(); // or your specific query like joins etc
+        $leverancier = Leverancier::paginate(4); // or your specific query like joins etc
         // dd($leverancier);
+
 
         return view('leverancier.index', compact('leverancier'));
     }
@@ -45,13 +46,8 @@ class LeverancierController extends Controller
     public function show($id)
     {
         $leverancier = Leverancier::find($id);
-        $producten = DB::table('product_per_leveranciers')
-            ->join('product', 'product_per_leveranciers.ProductId', '=', 'product.Id')
-            ->leftJoin('magazijn', 'product.Id', '=', 'magazijn.ProductId')
-            ->where('product_per_leveranciers.LeverancierId', $id)
-            ->select('product.*', 'magazijn.AantalAanwezig', 'magazijn.VerpakkingsEenheid', 'product_per_leveranciers.DatumLevering', 'product_per_leveranciers.DatumEerstVolgendeLevering')
-            ->get();
-        return view('leverancier.show', compact('leverancier', 'producten'));
+       
+        return view('leverancier.show', compact('leverancier'));
     }
 
     public function edit($id)

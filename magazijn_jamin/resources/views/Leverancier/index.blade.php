@@ -19,7 +19,7 @@
                     <td class="py-2 px-4 text-sm text-gray-900">{{ $test->Leveranciernummer }}</td>
                     <td class="py-2 px-4 text-sm text-gray-900">{{ $test->Mobiel }}</td>
                     <td class="px-4 py-2 text-white">
-                        <a href="{{ route('leverancier.show', $test->Id) }}" class="text-indigo-600 hover:text-indigo-800">
+                        <a href="{{ route('leverancier.show', $test->Id) }}"  style="display: flex; justify-content: center; align-items: center;">
                         ✎
                         </a>
                     </td>
@@ -31,6 +31,9 @@
     <br>
     <div class="flex justify-end">
         <a href="{{ route('welcome') }}" class="mb-4 inline-block px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Home</a>
+    </div>
+    <div class="mt-4">
+        {{ $leverancier->links() }}
     </div>
 </div>
 </x-layout>
