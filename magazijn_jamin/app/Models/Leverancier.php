@@ -23,8 +23,9 @@ class Leverancier extends Model
 
     public function contact()
     {
-        return $this->hasOne(Contact::class);
+        return $this->hasOne(Contact::class, 'id', 'contact_id');
     }
+    
 
 
 }

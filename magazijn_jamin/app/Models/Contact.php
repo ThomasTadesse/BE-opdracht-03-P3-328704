@@ -10,10 +10,12 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $table = 'contact'; // Specify the table name
+
     protected $guarded = [];
 
     public function leverancier()
     {
-        return $this->belongsTo(Leverancier::class);
+        return $this->belongsTo(Leverancier::class, 'contact_id');
     }
 }
