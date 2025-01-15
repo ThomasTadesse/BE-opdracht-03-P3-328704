@@ -25,25 +25,26 @@
                 <input type="tel" name="Mobiel" id="Mobiel" value="{{ $leverancier->Mobiel }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
-            <!-- <div class="mb-4">
-                <label for="straatnaam" class="block text-gray-700">Straatnaam:</label>
-                <input type="text" name="straatnaam" id="straatnaam" value="{{ $leverancier->contact->straatnaam ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
+            <div class="mb-4 flex items-center">
+                <label for="straatnaam" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Straatnaam:</label>
+                <input type="text" name="straatnaam" id="straatnaam" value="{{ $leverancier->contact->straatnaam ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
-            <div class="mb-4">
-                <label for="huisnummer" class="block text-gray-700">Huisnummer:</label>
-                <input type="text" name="huisnummer" id="huisnummer" value="{{ $leverancier->contact->huisnummer ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
+            <div class="mb-4 flex items-center">
+                <label for="huisnummer" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Huisnummer:</label>
+                <input type="text" name="huisnummer" id="huisnummer" value="{{ $leverancier->contact->huisnummer ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
-            <div class="mb-4">
-                <label for="postcode" class="block text-gray-700">Postcode:</label>
-                <input type="text" name="postcode" id="postcode" value="{{ $leverancier->contact->postcode ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
+            <div class="mb-4 flex items-center">
+                <label for="postcode" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Postcode:</label>
+                <input type="text" name="postcode" id="postcode" value="{{ $leverancier->contact->postcode ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
-            <div class="mb-4">
-                <label for="stad" class="block text-gray-700">Stad:</label>
-                <input type="text" name="stad" id="stad" value="{{ $leverancier->contact->stad ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
-            </div> -->
+            <div class="mb-4 flex items-center">
+                <label for="stad" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Stad:</label>
+                <input type="text" name="stad" id="stad" value="{{ $leverancier->contact->stad ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+            </div>
+
 
              <!-- Action Buttons -->
         <div class="mt-6 flex">
@@ -54,7 +55,7 @@
             <!-- Spacer to push next buttons to the right -->
             <div class="ml-auto flex space-x-4">
                 <!-- Back Button -->
-                <a href="{{ route('leverancier.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                <a href="{{ route('leverancier.show', $leverancier->Id) }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
                     Terug
                 </a>
                 <!-- Home Button -->
