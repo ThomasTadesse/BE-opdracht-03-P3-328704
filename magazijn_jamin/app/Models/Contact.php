@@ -16,6 +16,7 @@ class Contact extends Model
 
     public function leverancier()
     {
-        return $this->belongsTo(Leverancier::class, 'contact_id');
+        return $this->belongsTo(Leverancier::class, 'contact_id', 'id');
     }
+    
 }
