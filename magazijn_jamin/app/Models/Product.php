@@ -16,11 +16,7 @@ class Product extends Model
     protected $fillable = [
         'Naam',
         'Barcode',
-        'Omschrijving',
-        'IsActief',
-        'Opmerkingen',
-        'DatumAangemaakt',
-        'DatumGewijzigd'
+        'Omschrijving'
     ];
 
     public function magazijn()

@@ -26,32 +26,38 @@ class LeverancierController extends Controller
         return view('Leverancier.create', compact('leverancier', 'producten'));
     }
 
+
     public function store(Request $request)
-    {
-        $request->validate([
-            'Naam' => 'required|string|max:60',
-            'Contactpersoon' => 'required|string|max:60',
-            'Leveranciernummer' => 'required|string|max:11',
-            'Mobiel' => 'required|string|max:11',
-            'Aantal_producten' => 'required|integer',
-        ]);
-        
+{
+    $request->validate([
+        'Naam' => 'required|string|max:60',
+        'Contactpersoon' => 'required|string|max:60',
+        'Leveranciernummer' => 'required|string|max:11',
+        'Mobiel' => 'required|string|max:11',
+        'straatnaam' => 'required|string|max:255',
+        'huisnummer' => 'required|string|max:20',
+        'postcode' => 'required|string|max:20',
+        'stad' => 'required|string|max:100',
+    ]);
 
-        Leverancier::create($request->all());
+    $leverancier = Leverancier::create($request->only(['Naam', 'Contactpersoon', 'Leveranciernummer', 'Mobiel']));
 
-        return redirect()->route('leverancier.index')
-            ->with('success', 'Leverancier created successfully.');
-    }
+    $leverancier->contact()->create($request->only(['straatnaam', 'huisnummer', 'postcode', 'stad']));
+
+    return redirect()->route('leverancier.index')->with('success', 'Leverancier created successfully.');
+}
+
 
 // add contact table with straat huisnummer postcode & stad
 
+
     public function show($id)
     {
-        $leverancier = Leverancier::find($id);
-        // $contact = Contact::
-       
+        $leverancier = Leverancier::with('contact')->findOrFail($id);
+
         return view('leverancier.show', compact('leverancier'));
     }
+
 
     public function edit($id)
     {
@@ -59,22 +65,31 @@ class LeverancierController extends Controller
         return view('leverancier.edit', compact('leverancier'));
     }
 
+
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'Naam' => 'required|string|max:60',
-            'Contactpersoon' => 'required|string|max:60',
-            'Leveranciernummer' => 'required|string|max:11',
-            'Mobiel' => 'required|string|max:11',
-            'Aantal_producten' => 'required|integer',
-        ]);
+{
+    $request->validate([
+        'Naam' => 'required|string|max:60',
+        'Contactpersoon' => 'required|string|max:60',
+        'Leveranciernummer' => 'required|string|max:11',
+        'Mobiel' => 'required|string|max:11',
+        'straatnaam' => 'required|string|max:255',
+        'huisnummer' => 'required|string|max:20',
+        'postcode' => 'required|string|max:20',
+        'stad' => 'required|string|max:100',
+    ]);
 
-        $leverancier = Leverancier::find($id);
-        $leverancier->update($request->all());
+    $leverancier = Leverancier::findOrFail($id);
+    $leverancier->update($request->only(['Naam', 'Contactpersoon', 'Leveranciernummer', 'Mobiel']));
 
-        return redirect()->route('leverancier.index')
-            ->with('success', 'Leverancier updated successfully');
-    }
+    $leverancier->contact()->updateOrCreate(
+        [],
+        $request->only(['straatnaam', 'huisnummer', 'postcode', 'stad'])
+    );
+
+    return redirect()->route('leverancier.index')->with('success', 'Leverancier updated successfully.');
+}
+
 
     public function destroy($id)
     {

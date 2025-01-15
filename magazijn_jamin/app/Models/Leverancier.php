@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Task;
+use App\Models\Contact;
 
 class Leverancier extends Model
 {
@@ -13,15 +14,17 @@ class Leverancier extends Model
 
     protected $table = 'leverancier'; // Ensure the table name is correct
 
-    protected $fillable = [
-        'Naam',
-        'Contactpersoon',
-        'Leveranciernummer',
-        'Mobiel'
-    ];
+    protected $guarded = [];
 
     public function tasks()
     {
         return $this->hasMany(Task::class);
     }
+
+    public function contact()
+    {
+        return $this->hasOne(Contact::class);
+    }
+
+
 }
