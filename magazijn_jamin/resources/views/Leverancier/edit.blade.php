@@ -1,59 +1,69 @@
 <x-layout>
-<form method="POST" action="/leverancier/{{ $leverancier->id }}">
-    @csrf
-    @method('PATCH')
+    <div class="container mx-auto px-6 py-8">
+        <h2 class="text-3xl font-semibold mb-6 underline">Wijzig Leveranciergegevens</h2>
+        <form action="{{ route('leverancier.update', $leverancier->Id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-<div class="container mx-auto px-6 py-8">
-<h1 class="text-3xl font-semibold mb-6 underline">Overzicht Leveranciers</h1>
-    <table class="min-w-full table-auto border-collapse">
-        <thead class="bg-indigo-500 text-white">
-            <tr>
-                <th class="py-2 px-4 text-sm font-medium text-gray-900">Naam</th>
-                <th class="py-2 px-4 text-sm font-medium text-gray-900">Contactpersoon</th>
-                <th class="py-2 px-4 text-sm font-medium text-gray-900">Leveranciernummer</th>
-                <th class="py-2 px-4 text-sm font-medium text-gray-900">Mobiel</th>
-                <th class="py-2 px-4 text-sm font-medium text-gray-900">Leverancier details</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if(isset($leveranciers) && count($leveranciers) > 0)
-                @foreach ($leveranciers as $leverancier)
-                <tr class="border-b border-gray-200 hover:bg-gray-50">
-                    <td class="py-2 px-4 text-sm text-gray-900">{{ $leverancier->Naam }}</td>
-                    <td class="py-2 px-4 text-sm text-gray-900">{{ $leverancier->Contactpersoon }}</td>
-                    <td class="py-2 px-4 text-sm text-gray-900">{{ $leverancier->Leveranciernummer }}</td>
-                    <td class="py-2 px-4 text-sm text-gray-900">{{ $leverancier->Mobiel }}</td>
-                    <td class="px-4 py-2 text-white">
-                        <a href="{{ route('leverancier.update', $leverancier->id) }}" class="text-yellow-600 hover:text-yellow-800">
-                            ✎
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="6" class="py-2 px-4 text-sm text-gray-900">Geen leveranciers gevonden. Probeer later opnieuw.</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
-    <br>
-    <div class="flex justify-end">
-        <a href="{{ route('welcome') }}" class="mb-4 inline-block px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Home</a>
+            <div class="mb-4 flex items-center">
+                <label for="Naam" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Naam:</label>
+                <input type="text" name="Naam" id="Naam" value="{{ $leverancier->Naam }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+            </div>
+
+            <div class="mb-4 flex items-center">
+                <label for="Contactpersoon" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Contactpersoon:</label>
+                <input type="text" name="Contactpersoon" id="Contactpersoon" value="{{ $leverancier->Contactpersoon }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+            </div>
+
+            <div class="mb-4 flex items-center">
+                <label for="Leveranciernummer" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Leveranciernummer:</label>
+                <input type="text" name="Leveranciernummer" id="Leveranciernummer" value="{{ $leverancier->Leveranciernummer }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+            </div>
+
+            <div class="mb-4 flex items-center">
+                <label for="Mobiel" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Mobiel:</label>
+                <input type="tel" name="Mobiel" id="Mobiel" value="{{ $leverancier->Mobiel }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+            </div>
+
+            <!-- <div class="mb-4">
+                <label for="straatnaam" class="block text-gray-700">Straatnaam:</label>
+                <input type="text" name="straatnaam" id="straatnaam" value="{{ $leverancier->contact->straatnaam ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+
+            <div class="mb-4">
+                <label for="huisnummer" class="block text-gray-700">Huisnummer:</label>
+                <input type="text" name="huisnummer" id="huisnummer" value="{{ $leverancier->contact->huisnummer ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+
+            <div class="mb-4">
+                <label for="postcode" class="block text-gray-700">Postcode:</label>
+                <input type="text" name="postcode" id="postcode" value="{{ $leverancier->contact->postcode ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+
+            <div class="mb-4">
+                <label for="stad" class="block text-gray-700">Stad:</label>
+                <input type="text" name="stad" id="stad" value="{{ $leverancier->contact->stad ?? '' }}" class="w-full px-4 py-2 border rounded-lg">
+            </div> -->
+
+             <!-- Action Buttons -->
+        <div class="mt-6 flex">
+            <!-- Submit Button -->
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                Sla Op
+            </button>
+            <!-- Spacer to push next buttons to the right -->
+            <div class="ml-auto flex space-x-4">
+                <!-- Back Button -->
+                <a href="{{ route('leverancier.index') }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                    Terug
+                </a>
+                <!-- Home Button -->
+                <a href="{{ route('welcome') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                    Home
+                </a>
+            </div>
+        </div>
+            
+        </form>
     </div>
-</div>
-
-</form>
-
-<div class="mt-6 flex items-center justify-between gap-x-6">
-    <div class="flex items-center">
-        <button form="delete-form" class="text-red-500 text-sm font-bold">Delete</button>
-    </div>
-</div>
-
-<form method="POST" action="/leverancier/{{ $leverancier->id }}" id="delete-form" class="hidden">
-    @csrf
-    @method('DELETE')
-</form>
-
 </x-layout>
