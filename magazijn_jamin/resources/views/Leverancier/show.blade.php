@@ -25,19 +25,19 @@
                 <!-- Contact Details -->
                 <tr class="border border-gray-300">
                     <td class="py-2 px-4 font-semibold border border-gray-300">Straatnaam</td>
-                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->contact->straatnaam ?? 'N/A' }}</td>
+                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->Straat ?? 'N/A' }}</td>
                 </tr>
                 <tr class="border border-gray-300">
                     <td class="py-2 px-4 font-semibold border border-gray-300">Huisnummer</td>
-                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->contact->huisnummer ?? 'N/A' }}</td>
+                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->Huisnummer ?? 'N/A' }}</td>
                 </tr>
                 <tr class="border border-gray-300">
                     <td class="py-2 px-4 font-semibold border border-gray-300">Postcode</td>
-                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->contact->postcode ?? 'N/A' }}</td>
+                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->Postcode ?? 'N/A' }}</td>
                 </tr>
                 <tr class="border border-gray-300">
                     <td class="py-2 px-4 font-semibold border border-gray-300">Stad</td>
-                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->contact->stad ?? 'N/A' }}</td>
+                    <td class="py-2 px-4 border border-gray-300">{{ $leverancier->Stad ?? 'N/A' }}</td>
                 </tr>
 
                 <!-- TODO -->

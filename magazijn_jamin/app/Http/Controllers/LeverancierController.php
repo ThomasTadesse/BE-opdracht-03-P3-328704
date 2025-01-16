@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leverancier;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class LeverancierController extends Controller
 {
@@ -42,7 +43,28 @@ class LeverancierController extends Controller
 
     public function show($id)
     {
-        $leverancier = Leverancier::with('contact')->findOrFail($id);
+      
+
+        $leverancier = DB::table('leverancier as LEVE')
+            ->select(
+                'LEVE.Id',
+                'LEVE.Naam',
+                'LEVE.Contactpersoon',
+                'LEVE.Leveranciernummer',
+                'LEVE.Mobiel',
+                'CONT.Straat',
+                'CONT.Huisnummer',
+                'CONT.Postcode',
+                'CONT.Stad'
+            )
+            ->leftJoin('contact as CONT', 'LEVE.contactId', '=', 'CONT.Id')
+            ->where('LEVE.Id', $id)
+            ->first();
+
+
+
+         //$leverancier = Leverancier::with('contact')->findOrFail($id);
+         // dd($leverancier);
         return view('leverancier.show', compact('leverancier'));
     }    
 

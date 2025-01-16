@@ -163,13 +163,12 @@ INSERT INTO Contact
     ,DatumGewijzigd
 )
 VALUES
-  ('Van Gilslaan', '34', '1045CB', 'Stad', 1, NULL, SYSDATE(6), SYSDATE(6)),
-  ('Den Dolderpad', '2', '1067RC', 'Hilvarenbeek', 1, NULL, SYSDATE(6), SYSDATE(6)),
-  ('Fredo Raalteweg', '257', '1236OP', 'Utrecht', 1, NULL, SYSDATE(6), SYSDATE(6)),
-  ('Bertrand Russellhof', '21', '2034AP', 'Nijmegen', 1, NULL, SYSDATE(6), SYSDATE(6)),
-  ('Leon van Bonstraat', '213', '145XC', 'Den Haag', 1, NULL, SYSDATE(6), SYSDATE(6)),
-  ('Bea van Lingenlaan', '234', '2197FG', 'Lunteren', 1, NULL, SYSDATE(6), SYSDATE(6)),
-  ('Sint Pancras', '1', 'NULL', 'NULL', 1, NULL, SYSDATE(6), SYSDATE(6));
+  ('Van Gilslaan', '34', '1045CB', 'Hilvarenbeek', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Den Dolderpad', '2', '1067RC', 'Utrecht', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Fredo Raalteweg', '257', '1236OP', 'Nijmegen', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Bertrand Russellhof', '21', '2034AP', 'Den Haag', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Leon van Bonstraat', '213', '145XC', 'Lunteren', 1, NULL, SYSDATE(6), SYSDATE(6)),
+  ('Bea van Lingenlaan', '234', '2197FG', 'Sint Pancras', 1, NULL, SYSDATE(6), SYSDATE(6));
 
 -- Step 05:
 -- Goal: Create a new table Leverancier
