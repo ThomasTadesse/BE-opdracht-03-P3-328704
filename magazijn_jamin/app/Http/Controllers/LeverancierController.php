@@ -70,7 +70,22 @@ class LeverancierController extends Controller
 
     public function edit($id)
     {
-        $leverancier = Leverancier::with('contact')->findOrFail($id);
+        $leverancier = DB::table('leverancier as LEVE')
+            ->select(
+                'LEVE.Id',
+                'LEVE.Naam',
+                'LEVE.Contactpersoon',
+                'LEVE.Leveranciernummer',
+                'LEVE.Mobiel',
+                'CONT.Straat',
+                'CONT.Huisnummer',
+                'CONT.Postcode',
+                'CONT.Stad'
+            )
+            ->leftJoin('contact as CONT', 'LEVE.contactId', '=', 'CONT.Id')
+            ->where('LEVE.Id', $id)
+            ->first();
+
         return view('leverancier.edit', compact('leverancier'));
     }
 

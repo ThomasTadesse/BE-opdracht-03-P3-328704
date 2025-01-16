@@ -26,45 +26,43 @@
             </div>
 
             <div class="mb-4 flex items-center">
-                <label for="straatnaam" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Straatnaam:</label>
-                <input type="text" name="straatnaam" id="straatnaam" value="{{ $leverancier->contact->straatnaam ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+                <label for="Straat" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Straatnaam:</label>
+                <input type="text" name="Straat" id="Straat" value="{{ $leverancier->Straat }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
             <div class="mb-4 flex items-center">
-                <label for="huisnummer" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Huisnummer:</label>
-                <input type="text" name="huisnummer" id="huisnummer" value="{{ $leverancier->contact->huisnummer ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+                <label for="Huisnummer" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Huisnummer:</label>
+                <input type="text" name="Huisnummer" id="Huisnummer" value="{{ $leverancier->Huisnummer }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
             <div class="mb-4 flex items-center">
-                <label for="postcode" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Postcode:</label>
-                <input type="text" name="postcode" id="postcode" value="{{ $leverancier->contact->postcode ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+                <label for="Postcode" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Postcode:</label>
+                <input type="text" name="Postcode" id="Postcode" value="{{ $leverancier->Postcode }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
             <div class="mb-4 flex items-center">
-                <label for="stad" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Stad:</label>
-                <input type="text" name="stad" id="stad" value="{{ $leverancier->contact->stad ?? '' }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
+                <label for="Stad" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Stad:</label>
+                <input type="text" name="Stad" id="Stad" value="{{ $leverancier->Stad }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
             </div>
 
-
-             <!-- Action Buttons -->
-        <div class="mt-6 flex">
-            <!-- Submit Button -->
-            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Sla Op
-            </button>
-            <!-- Spacer to push next buttons to the right -->
-            <div class="ml-auto flex space-x-4">
-                <!-- Back Button -->
-                <a href="{{ route('leverancier.show', $leverancier->Id) }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
-                    Terug
-                </a>
-                <!-- Home Button -->
-                <a href="{{ route('welcome') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-                    Home
-                </a>
+            <!-- Action Buttons -->
+            <div class="mt-6 flex">
+                <!-- Submit Button -->
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Sla Op
+                </button>
+                <!-- Spacer to push next buttons to the right -->
+                <div class="ml-auto flex space-x-4">
+                    <!-- Back Button -->
+                    <a href="{{ route('leverancier.show', $leverancier->Id) }}" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                        Terug
+                    </a>
+                    <!-- Home Button -->
+                    <a href="{{ route('welcome') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                        Home
+                    </a>
+                </div>
             </div>
-        </div>
-            
         </form>
     </div>
 </x-layout>
