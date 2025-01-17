@@ -103,17 +103,16 @@ class LeverancierController extends Controller
         ]);
 
         try {
+            $leverancier = Leverancier::findOrFail($id);
+            $leverancier->update($request->only(['Naam', 'Contactpersoon', 'Leveranciernummer', 'Mobiel']));
 
-        $leverancier = Leverancier::findOrFail($id);
-        $leverancier->update($request->only(['Naam', 'Contactpersoon', 'Leveranciernummer', 'Mobiel']));
-
-        return redirect()->route('leverancier.index')->with('success', 'Leverancier updated successfully.');
-    } catch (\Exception $e) {
-        // Redirect met foutbericht
-        return redirect()->back()
-            ->with('error', 'Door een technische storing is het niet mogelijk de wijziging door te voeren. Probeer het op een later moment nog eens.')
-            ->withInput(); // Zorg ervoor dat ingevoerde gegevens behouden blijven
-    }
+            return redirect()->route('leverancier.index')->with('success', 'De wijzigingen zijn doorgevoerd.');
+        } catch (\Exception $e) {
+            // Redirect met foutbericht
+            return redirect()->back()
+                ->with('error', 'Door een technische storing is het niet mogelijk de wijziging door te voeren. Probeer het op een later moment nog eens.')
+                ->withInput(); // Zorg ervoor dat ingevoerde gegevens behouden blijven
+        }
     }
 
     public function destroy($id)

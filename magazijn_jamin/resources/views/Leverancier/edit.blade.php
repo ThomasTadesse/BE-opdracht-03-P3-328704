@@ -11,6 +11,17 @@
                 </div>
             @endif
 
+            @if (session('success'))
+                <div class="mb-4 p-4 text-green-700 bg-green-100 border border-green-400 rounded">
+                    {{ session('success') }}
+                </div>
+                <script>
+                    setTimeout(function() {
+                        window.location.href = "{{ route('leverancier.index') }}";
+                    }, 3000);
+                </script>
+            @endif
+
             <div class="mb-4 flex items-center">
                 <label for="Naam" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Naam:</label>
                 <input type="text" name="Naam" id="Naam" value="{{ $leverancier->Naam }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">
