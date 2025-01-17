@@ -12,7 +12,16 @@ class Contact extends Model
 
     protected $table = 'contact'; // Specify the table name
 
-    protected $guarded = [];
+    protected $primaryKey = 'Id'; // Specify the primary key
+
+    public $timestamps = false; // Disable timestamps
+
+    protected $fillable = [
+        'straatnaam',
+        'huisnummer',
+        'postcode',
+        'stad',
+    ];
 
     public function leverancier()
     {

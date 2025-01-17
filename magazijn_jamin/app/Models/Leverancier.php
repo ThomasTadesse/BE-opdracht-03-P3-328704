@@ -14,7 +14,17 @@ class Leverancier extends Model
 
     protected $table = 'leverancier'; // Ensure the table name is correct
 
-    protected $guarded = [];
+    protected $primaryKey = 'Id'; // Ensure the primary key is correct
+
+    public $timestamps = false; // Disable timestamps
+
+    protected $fillable = [
+        'Naam',
+        'Contactpersoon',
+        'Leveranciernummer',
+        'Mobiel',
+        'contact_id',
+    ];
 
     public function tasks()
     {
