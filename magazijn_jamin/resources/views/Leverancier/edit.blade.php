@@ -5,6 +5,12 @@
             @csrf
             @method('PUT')
 
+            @if (session('error'))
+                <div class="mb-4 p-4 text-red-700 bg-red-100 border border-red-400 rounded">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <div class="mb-4 flex items-center">
                 <label for="Naam" class="block py-2 px-4 font-semibold text-gray-700 w-1/3">Naam:</label>
                 <input type="text" name="Naam" id="Naam" value="{{ $leverancier->Naam }}" class="w-2/3 px-4 py-2 border border-gray-300 rounded-lg">

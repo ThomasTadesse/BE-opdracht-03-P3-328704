@@ -91,7 +91,6 @@ class LeverancierController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request);
         $request->validate([
             'Naam' => 'required|string|max:60',
             'Contactpersoon' => 'required|string|max:60',
@@ -103,17 +102,18 @@ class LeverancierController extends Controller
             'Stad' => 'required|string|max:100',
         ]);
 
+        try {
+
         $leverancier = Leverancier::findOrFail($id);
         $leverancier->update($request->only(['Naam', 'Contactpersoon', 'Leveranciernummer', 'Mobiel']));
 
-        // $leverancier->contact()->updateOrCreate(
-        //     [],
-        //     $request->only(['straatnaam', 'huisnummer', 'postcode', 'stad'])
-        // );
-
-        // $leverancier->contact()->update($request->only(['straatnaam', 'huisnummer', 'postcode', 'stad']));
-
         return redirect()->route('leverancier.index')->with('success', 'Leverancier updated successfully.');
+    } catch (\Exception $e) {
+        // Redirect met foutbericht
+        return redirect()->back()
+            ->with('error', 'Door een technische storing is het niet mogelijk de wijziging door te voeren. Probeer het op een later moment nog eens.')
+            ->withInput(); // Zorg ervoor dat ingevoerde gegevens behouden blijven
+    }
     }
 
     public function destroy($id)
