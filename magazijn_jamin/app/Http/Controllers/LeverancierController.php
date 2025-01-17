@@ -91,6 +91,7 @@ class LeverancierController extends Controller
 
     public function update(Request $request, $id)
     {
+        dd($request);
         $request->validate([
             'Naam' => 'required|string|max:60',
             'Contactpersoon' => 'required|string|max:60',

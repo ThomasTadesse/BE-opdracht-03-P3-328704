@@ -23,12 +23,10 @@ class LeverancierFactory extends Factory
         return [
             'Naam' => $this->faker->name,
             'Contactpersoon' => $this->faker->name,
-            'Leveranciernummer' => $this->faker->numberBetween(1, 99999999999),
-            'Mobiel' => $this->faker->numberBetween(1, 99999999999),
-            'IsActief' => $this->faker->boolean,
-            'Opmerkingen' => $this->faker->optional()->sentence,
-            'DatumAangemaakt' => Carbon::now(),
-            'DatumGewijzigd' => Carbon::now(),
+            'Leveranciernummer' => Str::random(10),
+            'Mobiel' => Str::random(10),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ];
     }
 }
